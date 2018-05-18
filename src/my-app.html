@@ -25,8 +25,8 @@
   <template>
     <style>
       :host {
-        --app-primary-color: #4285f4;
-        --app-secondary-color: black;
+        --app-primary-color: black;
+        --app-secondary-color: #DECBA1;
 
         display: block;
       }
@@ -89,26 +89,21 @@
     <brum-global-variable key="userData" value="{{storedUser}}"></brum-global-variable>
 
     <app-drawer-layout fullbleed narrow="{{narrow}}">
-      <!-- Drawer content -->
-      <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
-        <app-toolbar>Menu</app-toolbar>
-        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <div name="home-quotes">
-            <a href="[[rootPath]]home-quotes">Home</a>
-          </div>
-          <div name="secret-quotes" hidden$="[[!storedUser.loggedin]]">
-            <a href="[[rootPath]]secret-quotes">Secret Quotes</a>
-          </div>
-        </iron-selector>
-      </app-drawer>
-
       <!-- Main content -->
       <app-header-layout has-scrolling-region>
 
         <app-header slot="header" condenses reveals effects="waterfall">
           <app-toolbar>
             <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
-            <div main-title>Chuck Norris</div>
+            <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+              <div name="home-quotes">
+                <a href="[[rootPath]]home-quotes">Home</a>
+              </div>
+              <div name="secret-quotes" hidden$="[[!storedUser.loggedin]]">
+                <a href="[[rootPath]]secret-quotes">Secret Quotes</a>
+              </div>
+            </iron-selector>
+            <div main-title></div>
             <a name="register-login" href="[[rootPath]]register-login" hidden$="[[storedUser.loggedin]]">Log in</a>
             <div hidden$="[[!storedUser.loggedin]]">
               <span class="greeting">Hi [[storedUser.name]]!</span>
@@ -161,11 +156,6 @@
               // If no page was found in the route data, page will be an empty string.
               // Default to 'view1' in that case.
               this.page = page || 'home-quotes';
-
-              // Close a non-persistent drawer when the page & route are changed.
-              if (!this.$.drawer.persistent) {
-                  this.$.drawer.close();
-              }
           }
 
           _pageChanged(page) {

@@ -20,7 +20,8 @@
     "iron-input": "PolymerElements/iron-input#^2.0.1",
     "paper-input": "PolymerElements/paper-input#^2.0.5",
     "iron-localstorage": "PolymerElements/iron-localstorage#^2.0.0",
-    "brum-global-variable": "SieBrum/brum-global-variable#^1.0.6"
+    "brum-global-variable": "SieBrum/brum-global-variable#^1.0.6",
+    "iron-collapse": "PolymerElements/iron-collapse#^2.2.1"
   },
   "resolutions": {
     "polymer": "^2.0.0"
